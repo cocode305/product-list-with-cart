@@ -27,15 +27,22 @@ body {
         PRODUCT SECTION
 ================================ */
 /* Product Image & Button */
+
+.product-item {
+    width: 100%;
+}
+
 .product-display {
     position: relative;
 }
 
 .product-img {
     border-radius: 15px;
+    width: 100%;
 }
 
 .addToCart-btn {
+    width: fit-content;
     outline: none;
     border-radius: 50px;
     border: 2px solid var(--rose900);
@@ -77,3 +84,26 @@ body {
 /* ===============================
         PRODUCT SECTION END
 ================================ */
+
+
+
+
+/* 
+============================
+    Media Queries
+========================== */
+@media (min-width: 768px) {
+    .product-section {
+        /* display: flex; */
+    }
+    
+    #product-container {
+        display: grid;
+        grid-template-columns: repeat( auto-fill, minmax(200px, 1fr) );
+        gap: 20px;
+    }
+
+    /* .cart {
+        flex-basis: 20%;
+    } */
+}
