@@ -42,7 +42,7 @@ body {
 }
 
 .addToCart-btn {
-    width: fit-content;
+    width: max-content;
     outline: none;
     border-radius: 50px;
     border: 2px solid var(--rose900);
@@ -99,7 +99,22 @@ body {
     
     #product-container {
         display: grid;
-        grid-template-columns: repeat( auto-fill, minmax(200px, 1fr) );
+        grid-template-columns: repeat( auto-fill, minmax(300px, 1fr) );
+        gap: 20px;
+    }
+
+    /* .cart {
+        flex-basis: 20%;
+    } */
+}
+@media (min-width: 1024px) {
+    .product-section {
+        display: flex;
+    }
+    
+    #product-container {
+        display: grid;
+        grid-template-columns: repeat( auto-fill, minmax(300px, 1fr) );
         gap: 20px;
     }
 
