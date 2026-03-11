@@ -1,5 +1,6 @@
 const productContainer = document.querySelector('.product-container');
-const quantity = document.querySelector('.cart-quantity');
+const cartQuantity = document.querySelector('.cart-quantity');
+const cartList = document.querySelector('.cart-list');
 
 
 let products = [
@@ -75,43 +76,117 @@ let products = [
     price: 6.50,
   },
 ];
-let cartLists = [];
+let cartItems = {};
 
-// Display Product Cards
-function displayProduct() {
-    products.forEach((value, key) => {
-        let productItem = document.createElement('div');
-        productItem.classList.add('product-item');
-        productItem.innerHTML = `
-        <div class="product-display">
-        <img src="assets/images/${value.image}" alt="" class="product-img">
+// Display Product Cards using self-invoking function
+function renderProduct() {
+  products.forEach((product, key) => {
+    let productItem = document.createElement('div');
+    productItem.setAttribute('data-product-id',`${key}`);
+    productItem.classList.add('product-item');
+    productItem.innerHTML = `
+    <div class="product-display">
+    <img src="assets/images/${product.image}" alt="" class="product-img">
 
-        <div class="cart-control">
-          <button class="addToCart-btn" onClick(addToCart(${key}))><img src="assets/images/icon-add-to-cart.svg" alt="Add to Cart icon">Add to Cart</button>
+    <div class="cart-control">
+      <button class="addToCart-btn"><img src="assets/images/icon-add-to-cart.svg" alt="Add to Cart icon">Add to Cart</button>
 
-          <div class="counter hidden">
-            <!-- Minus Button -->
-            <button class="counter-btn minus"><i class="fa-solid fa-minus"></i></button>
-            <!-- Counter -->
-            <span class="count">0</span>
-            <!-- Plus Button -->
-            <button class="counter-btn plus"><i class="fa-solid fa-plus"></i></button>
-          </div>
-        </div>
+      <div class="item-counter hidden">
+        <!-- Minus Button -->
+        <button class="reduce-item item-counter-btn minus-btn"><i class="fa-solid fa-minus"></i></button>
+        <!-- Counter -->
+        <span class="item-count">0</span>
+        <!-- Plus Button -->
+        <button class="increase-item item-counter-btn plus-btn"><i class="fa-solid fa-plus"></i></button>
       </div>
-      
-      <div class="product-details">
-        <h4 class="product-category">${value.category}</h4>
-        <h2 class="product-name">${value.name}</h2>
-        <h3 class="product-price">$${value.price}</h3>
-      </div>
-        `;
-        productContainer.append(productItem);
-    });
+    </div>
+  </div>
+  
+  <div class="product-details">
+    <h4 class="product-category">${product.category}</h4>
+    <h2 class="product-name">${product.name}</h2>
+    <h3 class="product-price">$${product.price.toFixed(2)}</h3>
+  </div>
+  `;
+  
+  productContainer.append(productItem);
+    
+  });
 }
-displayProduct();
+renderProduct();
 
-// Add to Cart Function
-function addToCart(key) {
+productContainer.addEventListener('click', (e) => {
+  // Update cart state
+  const productCard = e.target.closest('.product-item');
+  const productId = productCard.dataset.productId;
 
+  if (e.target.closest('.addToCart-btn')) {
+    updateCart(productId, 1)
+  }
+  
+  // Plus button
+  if (e.target.closest('.plus-btn')) {
+    updateCart(productId, 1);
+  }
+  
+  // Minus button
+  if (e.target.closest('.minus-btn')) {
+    updateCart(productId, -1);
+  }
+
+  displayCartItem(productCard);
+});
+
+function updateCart(productId, change) {
+  // Maintains current state for unclicked product cards
+  if (!cartItems[productId]) {
+    cartItems[productId] = {quantity: 0}
+  }
+  // Changes the state of clicked product
+  cartItems[productId].quantity += change;
+
+  // Delete cart item if quantity is zero
+  if (cartItems[productId].quantity <= 0) {
+    delete cartItems[productId];
+  }
 }
+
+
+
+function displayCartItem(productCard) {
+  const productId = productCard.dataset.productId;
+  const quantity = cartItems[productId]?.quantity || 0
+
+  const addToCart = productCard.querySelector('.addToCart-btn');
+  const counter = productCard.querySelector('.item-counter');
+  const countDisplay = productCard.querySelector('.item-count');
+
+  if (quantity > 0) {
+    addToCart.classList.add('hidden');
+    counter.classList.remove('hidden');
+    countDisplay.textContent = quantity;
+  } else {
+    addToCart.classList.remove("hidden");
+    counter.classList.add("hidden");
+  }
+}
+
+  
+// let addCartBtn = productItem.querySelector(".addToCart-btn");
+
+// addCartBtn.addEventListener('click', () => {
+//   if (cartItems[key] === null) {
+//     cartItems[key] = products[key];
+//     cartItems[key].quantity = 1;
+//   }
+
+// const cartControl = e.target.closest('.cart-control');
+    // const addCartBtn = cartControl.querySelector('.addToCart-btn');
+    // const itemCounter = cartControl.querySelector('.item-counter');
+  
+    // Change cart control state when button clicked
+    // addCartBtn.classList.add('hidden');
+    // itemCounter.classList.remove('hidden');
+
+
+function addToCart() {}

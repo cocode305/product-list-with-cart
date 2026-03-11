@@ -34,13 +34,67 @@
         </div>
     
         <div class="cart">
-          <h1 class="cart-heading">Your Cart <span class="cart-quanntity">(0)</span></h1>
-          <div class="empty-cart">
+          <h1 class="cart-heading">Your Cart <span class="cart-quantity">(0)</span></h1>
+          <div class="empty-cart hidden">
             <img src="assets/images/illustration-empty-cart.svg" alt="Empty cart image">
             <p>Your added items will appear here</p>
           </div>
 
-          <div class="cart-container"></div>
+          <ul class="cart-list">
+            <li class="cart-item">
+              <div class="cart-item-details">
+                <h4 class="product-name">waffle with Berries</h4>
+                <div class="product-cost">
+                  <span class="item-quantity">4x</span>
+                  <span class="item-price">$6.50</span>
+                  <span class="item-total">$26.00</span>
+                </div>
+              </div>
+              
+              <button class="cancel-order-btn" onclick="cancelOrder()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10">
+                  <path fill="#CAAFA7"
+                  d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z" />
+                </svg>
+              </button>
+            </li>
+
+            <li class="cart-item">
+              <div class="cart-item-details">
+                <h4 class="product-name">waffle with Berries</h4>
+                <div class="product-cost">
+                  <span class="item-quantity">4x</span>
+                  <span class="item-price">$6.50</span>
+                  <span class="item-total">$26.00</span>
+                </div>
+              </div>
+              
+              <button class="cancel-order-btn" onclick="cancelOrder()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10">
+                  <path fill="#CAAFA7"
+                  d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z" />
+                </svg>
+              </button>
+            </li>
+
+            <li class="cart-item">
+              <div class="cart-item-details">
+                <h4 class="product-name">waffle with Berries</h4>
+                <div class="product-cost">
+                  <span class="item-quantity">4x</span>
+                  <span class="item-price">$6.50</span>
+                  <span class="item-total">$26.00</span>
+                </div>
+              </div>
+              
+              <button class="cancel-order-btn" onclick="cancelOrder()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10">
+                  <path fill="#CAAFA7"
+                  d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z" />
+                </svg>
+              </button>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
